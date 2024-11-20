@@ -27,4 +27,9 @@ export default function EnrollRoutes(app) {
       res.status(500).send({ error: "Internal Server Error" });
     }
   });
+  app.get("/api/location", async (req, res) => {
+    
+    res.status(200).send(process.env.NETLIFY_URL);
+  });
+
 }
