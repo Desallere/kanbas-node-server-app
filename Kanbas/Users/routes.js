@@ -36,8 +36,7 @@ export default function UserRoutes(app) {
     dao.updateUser(userId, userUpdates);
     const currentUser = dao.findUserById(userId);
     req.session["currentUser"] = currentUser;
-    console.log("update");
-    console.log(req.session["currentUser"]);
+
     res.json(currentUser);
   };
   const signup = (req, res) => {
@@ -48,8 +47,7 @@ export default function UserRoutes(app) {
     }
     const currentUser = dao.createUser(req.body);
     req.session["currentUser"] = currentUser;
-    console.log("signup");
-    console.log(req.session["currentUser"]);
+
     res.json(currentUser);
   };
   const signin = (req, res) => {
@@ -57,24 +55,21 @@ export default function UserRoutes(app) {
     const currentUser = dao.findUserByCredentials(username, password);
     if (currentUser) {
       req.session["currentUser"] = currentUser;
-      console.log("signin");
-      console.log(req.session["currentUser"]);
+
       res.json(currentUser);
     } else {
       res.status(401).json({ message: "Unable to login. Try again later." });
     }
   };
   const signout = (req, res) => {
-    console.log("signout");
-    console.log(req.session["currentUser"]);
+
     req.session.destroy();
     res.sendStatus(200);
   };
 
   const profile = (req, res) => {
     const currentUser = req.session["currentUser"];
-    console.log("profile");
-    console.log(req.session["currentUser"]);
+
     if (!currentUser) {
       res.sendStatus(401);
       return;

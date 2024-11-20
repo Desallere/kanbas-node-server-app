@@ -23,6 +23,7 @@ export function deleteCourse(courseId) {
   Database.enrollments = enrollments.filter(
     (enrollment) => enrollment.course !== courseId
   );
+  console.log(Database.courses);
 }
 export function updateCourse(courseId, courseUpdates) {
   const { courses } = Database;
