@@ -6,7 +6,8 @@ export default function AssignmentRoutes(app) {
     const status = await assignmentsDao.deleteAssignment(assignmentId);
     res.send(status);
   });
-  
+
+
   app.put("/api/assignments/:assignmentId", async (req, res) => {
     const { assignmentId } = req.params;
     const assignmentUpdates = req.body;
@@ -14,6 +15,7 @@ export default function AssignmentRoutes(app) {
     res.send(status);
   });
 
+  
   app.post("/api/assignments/create", (req, res) => {
     const newAssignmentData = req.body;
     console.log(req.body)

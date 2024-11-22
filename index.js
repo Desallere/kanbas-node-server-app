@@ -9,6 +9,7 @@ import CourseRoutes from "./Kanbas/Courses/routes.js";
 import ModuleRoutes from "./Kanbas/Modules/routes.js";
 import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
 import EnrollRoutes  from "./Kanbas/Enrollments/routes.js";
+import QuizzesRoutes from "./Kanbas/Quizzes/routes.js";
 const app = express();
 app.use(express.json());
 app.use(
@@ -17,6 +18,7 @@ app.use(
     origin: process.env.NETLIFY_URL || "http://localhost:3000",
   })
 );
+
 
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kanbas",
@@ -42,4 +44,7 @@ CourseRoutes(app);
 AssignmentRoutes(app);
 ModuleRoutes(app);
 EnrollRoutes(app);
+QuizzesRoutes(app);
+
+
 app.listen(process.env.PORT || 4000);
