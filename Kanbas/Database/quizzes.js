@@ -22,9 +22,17 @@ export default [
     untilDate: "2023-05-13T23:59:00", // default value
     numberofQuestion: 10,
     score: {
-      123: 100,
-      234: 60,
+      "123": 100,
+      "234": 60,
     },
+    starttime:{
+      "123": "2023-05-13T23:59:00",
+      "234": "2023-03-13T23:59:00",
+    },
+    attemptnum:{
+      "123": 0,
+      "234": 1,
+    }
   },
 
   {
@@ -38,8 +46,8 @@ export default [
     assignmentGroup: "Quizzes", // default value
     shuffleAnswers: true, // default value
     timeLimit: 20, // default value
-    multipleAttempts: false, // default value
-    howManyAttempts: 1, // default value
+    multipleAttempts: true, // default value
+    howManyAttempts: 3, // default value
     showCorrectAnswers: false, // default value
     accessCode: "", // default value is blank
     oneQuestionAtATime: true, // default value is Yes
@@ -53,6 +61,14 @@ export default [
       123: 70,
       234: 90,
     },
+    starttime:{
+      123: "2023-05-13T23:59:00",
+      234: "2023-03-13T23:59:00",
+    },
+    attemptnum:{
+      123: 0,
+      234: 1,
+    }
     
   },
   {
@@ -81,6 +97,14 @@ export default [
       123: 70,
       234: 90,
     },
+    starttime:{
+      123: "2023-05-13T23:59:00",
+      234: "2023-03-13T23:59:00",
+    },
+    attemptnum:{
+      123: 0,
+      234: 1,
+    }
     
   },
 ];
