@@ -12,8 +12,8 @@ export default [
       C3: { value: "4", answer: true },
     },
     answers:{
-      123: "C1",
-      234: "C2",
+      "1234": "C1",
+      "2345": "C2",
     }
   },
   {
@@ -29,8 +29,7 @@ export default [
       C3: { value: "5", answer: true },
     },
     answers:{
-      123: "C1",
-      234: "C2",
+      "2345": "C2",
     }
   },
   {
@@ -45,8 +44,8 @@ export default [
       C2: { value: "False", answer: true },
     },
     answers:{
-      123: "C1",
-      234: "C2",
+      "1234": "C1",
+      "2345": "C2",
     }
   },
   {
@@ -61,8 +60,8 @@ export default [
       C2: { value: "five", answer: true },
     },
     answers:{
-      123: "5",
-      234: "7",
+      "1234": "5",
+      "2345": "7",
     }
   },
 ];

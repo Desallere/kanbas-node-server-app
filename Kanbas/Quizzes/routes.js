@@ -75,5 +75,63 @@ export default function QuizzesRoutes(app) {
     res.send(status);
   });
 
+
+
+  app.post("/api/quizzes/:questionID/updateanswer", async (req, res) => {
+    const { userId, answerId } = req.body;
+    const questionId = req.params.questionID;
+    // Make sure input validation is performed
+    if (!userId || !answerId) {
+      return res.status(400).send({ error: "Invalid request. userId and answerId are required." });
+    }
+  
+    const status = quizzesDao.updateQuestionAnswer(questionId, userId, answerId);
+  
+    if (status) {
+      res.send({ success: true });
+    } else {
+      res.status(404).send({ error: "Question not found." });
+    }
+  });
+
+  app.get("/api/quizzes/:questionID/answer/:userID", async (req, res) => {
+    const userId = req.params.userID; // Extract userId from route parameters
+    const questionId = req.params.questionID;
+    const answer = quizzesDao.readQuestionAnswer(questionId, userId);
+   
+    if (answer) {
+      res.send({ answer });
+    } else {
+      res.send({ answer: null });
+    }
+  });
+
+  
+
+
+  app.put("/api/quizzes/:quizID/user/:userID", async (req, res) => {
+    const quizId = req.params.quizID;
+    const userId = req.params.userID;
+    const { score, startTime, attemptNum } = req.body;
+    console.log(req.body);
+    if (score === undefined || startTime === undefined || attemptNum === undefined) {
+      return res.status(400).send({ error: "Invalid request data" });
+    }
+    
+
+    try {
+      const updatedQuiz = quizzesDao.updateUserQuizData(quizId, userId, score, startTime, attemptNum);
+  
+      if (updatedQuiz) {
+        res.send({ success: true, updatedQuiz });
+      } else {
+        res.status(404).send({ success: false, message: "Quiz not found" });
+      }
+    } catch (error) {
+      res.status(500).send({ success: false, message: "Internal server error" });
+    }
+  });
+
+
 }
 

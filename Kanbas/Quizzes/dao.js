@@ -36,7 +36,7 @@ export function deleteQuizzes(quizID) {
   Database.quizzes = quizzes.filter((quiz) => quiz._id !== quizID);
   // Remove questions related to the quizID
   Database.questions = questions.filter((question) => question.quizID !== quizID);
-  
+
 }
 
 
@@ -86,4 +86,42 @@ export function createQuestion(question) {
 export function doesQuestionExist(questionId) {
   const { questions } = Database; // Ensure Database is properly defined and imported
   return questions.some((question) => question._id === questionId);
+}
+
+export function updateQuestionAnswer(questionId, userId, answerId) {
+  const { questions } = Database; // Ensure Database is properly defined and imported
+
+
+  const question = questions.find((q) => q._id === questionId);
+  if (!question) {
+    return false;
+  }
+
+  question.answers[userId] = answerId;
+  return true;
+}
+
+// Assuming you have access to the questions data, possibly by importing it
+
+export function readQuestionAnswer(questionId, userId) {
+
+  const { questions } = Database;
+  const question = questions.find(q => q._id === questionId);
+
+  if (question && question.answers && userId in question.answers) {
+    return question.answers[userId];
+  }
+
+  return null;
+}
+
+export function updateUserQuizData(quizId, userId, score, startTime, attemptNum) {
+  const quiz = Database.quizzes.find(q => q._id === quizId);
+  if (quiz) {
+    quiz.score[userId] = score;
+    quiz.starttime[userId] = startTime;
+    quiz.attemptnum[userId] = attemptNum;
+    return quiz;
+  }
+  return null;
 }
