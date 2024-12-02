@@ -14,10 +14,10 @@ export default function AssignmentRoutes(app) {
     res.send(status);
   });
 
-  app.post("/api/assignments/create", (req, res) => {
+  app.post("/api/assignments/create", async (req, res) => {
     const newAssignmentData = req.body;
     console.log(req.body)
-    const newAssignment = assignmentsDao.createAssignment(newAssignmentData);
+    const newAssignment = await assignmentsDao.createAssignment(newAssignmentData);
     res.send(newAssignment);
   });
 }
